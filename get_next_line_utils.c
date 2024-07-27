@@ -6,14 +6,13 @@
 /*   By: mmorais <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 12:07:16 by mmorais           #+#    #+#             */
-/*   Updated: 2024/07/27 13:07:18 by mmorais          ###   ########.fr       */
+/*   Updated: 2024/07/27 17:15:06 by mmorais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "get_next_line.h"
 
-size_t  ft_strlen(const char *str)
+int	ft_strlen(const char *str)
 {
-	size_t	count;
+	int	count;
 
 	count = 0;
 	while (str[count])
@@ -26,11 +25,11 @@ char	*ft_strchr(const char *s, int c)
 	while (*s)
 	{
 		if (*s == (char)c)
-			return (s);
+			return ((char *)s);
 		s++;
 	}
-	if (*s == NULL)
-		return (s);
+	if ((char)c == '\0')
+		return ((char *)s);
 	return (NULL);
 }
 
