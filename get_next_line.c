@@ -47,9 +47,14 @@ static char	*get_first_line(char *buffer, char *line)
 	int	count;
 
 	count = 0;
+	if (buffer[count] == '\0')
+		return (NULL);
 	while (buffer[count] != '\0' && buffer[count] != '\n')
 		++count;
-	line = (char *)malloc(sizeof(char) * (count + 1));
+	if (buffer[count] == '\n')
+		line = (char *)malloc(sizeof(char) * (count + 2));
+	else if (buffer[count] == '\0')
+		line = (char *)malloc(sizeof(char) * (count + 1));
 	if (line == NULL)
 		return (NULL);
 	count = 0;
@@ -57,6 +62,10 @@ static char	*get_first_line(char *buffer, char *line)
 	{
 		line[count] = buffer[count];
 		++count;
+	}
+	if (buffer[count] == '\n')
+	{
+		line[count++] = '\n';
 	}
 	line[count] = '\0';
 	return (line);
