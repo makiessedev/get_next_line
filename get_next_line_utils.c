@@ -6,7 +6,7 @@
 /*   By: mmorais <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 12:07:16 by mmorais           #+#    #+#             */
-/*   Updated: 2024/07/29 12:45:25 by mmorais          ###   ########.fr       */
+/*   Updated: 2024/07/29 18:46:57 by mmorais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -38,10 +38,10 @@ char	*ft_strchr(const char *s, int c)
 
 char	*ft_strjoin(char *next_lines, char *temp)
 {
+	int		next_lines_len;
+	int		temp_len;
+	int		count;
 	char	*joined;
-	int	next_lines_len;
-	int	temp_len;
-	int	count;
 
 	if (next_lines == NULL)
 	{
@@ -51,12 +51,9 @@ char	*ft_strjoin(char *next_lines, char *temp)
 	next_lines_len = ft_strlen(next_lines);
 	temp_len = ft_strlen(temp);
 	joined = (char *)malloc((next_lines_len + temp_len + 1) * sizeof(char));
-	count = 0;
-	while (next_lines[count])
-	{
+	count = -1;
+	while (next_lines[++count])
 		joined[count] = next_lines[count];
-		count++;
-	}
 	count = 0;
 	while (temp[count])
 	{

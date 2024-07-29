@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmorais <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/29 18:41:18 by mmorais           #+#    #+#             */
+/*   Updated: 2024/07/29 18:44:34 by mmorais          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "get_next_line.h"
 
 static char	*read_line(int fd, char *buffer);
@@ -7,7 +18,7 @@ static char	*without_first_line(char *buffer);
 char	*get_next_line(int fd)
 {
 	static char	*buffer;
-	char	*line;
+	char		*line;
 
 	if (fd <= 0)
 		return (NULL);
@@ -20,7 +31,7 @@ char	*get_next_line(int fd)
 
 static char	*read_line(int fd, char *buffer)
 {
-	int	read_len;
+	int		read_len;
 	char	*buffer_temp;
 
 	buffer_temp = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
@@ -73,8 +84,8 @@ static char	*get_first_line(char *buffer, char *line)
 
 static char	*without_first_line(char *buffer)
 {
-	int	rest_init;
-	int	count;
+	int		rest_init;
+	int		count;
 	char	*rest;
 
 	rest_init = 0;
