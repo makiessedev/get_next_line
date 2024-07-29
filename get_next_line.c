@@ -1,14 +1,17 @@
 #include "get_next_line.h"
 
-static char *read_line(int fd, char *buffer);
+static char	*read_line(int fd, char *buffer);
+static char	*get_first_line(char *buffer);
 
 char	*get_next_line(int fd)
 {
 	static char	*buffer;
+	char	*line;
 	if (fd <= 0)
 		return (NULL);
-	buffer = read_line(fd, buffer);
-	return (buffer);
+	buffer = read_first_line(fd, buffer);
+	line = get_line(buffer);
+	return (line);
 }
 
 static char	*read_line(int fd, char *buffer)
@@ -31,4 +34,22 @@ static char	*read_line(int fd, char *buffer)
 	}
 	free(buffer_temp);
 	return (buffer);
+}
+
+static char	*get_first_line(char *buffer)
+{
+	char	*line;
+	int	count;
+
+	count = 0;
+	while (buffer[count] && buffer[count] != '\n')
+		++count;
+	line = (char *)malloc(sizeof(char) * count);
+	count = 0;
+	while (buffer[count] && buffer[count] != '\n')
+	{
+		line[count] = buffer[count];
+		++count;
+	}
+	return (line);
 }
