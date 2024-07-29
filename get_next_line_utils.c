@@ -6,9 +6,10 @@
 /*   By: mmorais <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 12:07:16 by mmorais           #+#    #+#             */
-/*   Updated: 2024/07/27 17:15:06 by mmorais          ###   ########.fr       */
+/*   Updated: 2024/07/29 12:45:25 by mmorais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "get_next_line.h"
 
 int	ft_strlen(const char *str)
 {
@@ -22,6 +23,8 @@ int	ft_strlen(const char *str)
 
 char	*ft_strchr(const char *s, int c)
 {
+	if (s == NULL)
+		return (NULL);
 	while (*s)
 	{
 		if (*s == (char)c)
@@ -40,6 +43,11 @@ char	*ft_strjoin(char *next_lines, char *temp)
 	int	temp_len;
 	int	count;
 
+	if (next_lines == NULL)
+	{
+		next_lines = malloc(sizeof(char));
+		next_lines[0] = '\0';
+	}
 	next_lines_len = ft_strlen(next_lines);
 	temp_len = ft_strlen(temp);
 	joined = (char *)malloc((next_lines_len + temp_len + 1) * sizeof(char));
