@@ -6,7 +6,7 @@
 /*   By: mmorais <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 11:37:17 by mmorais           #+#    #+#             */
-/*   Updated: 2024/07/29 11:17:43 by mmorais          ###   ########.fr       */
+/*   Updated: 2024/07/29 18:41:37 by mmorais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef GET_NEXT_LINE
@@ -14,7 +14,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
