@@ -6,7 +6,7 @@
 /*   By: mmorais <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:41:18 by mmorais           #+#    #+#             */
-/*   Updated: 2024/07/29 18:44:34 by mmorais          ###   ########.fr       */
+/*   Updated: 2024/07/29 19:01:55 by mmorais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -23,6 +23,8 @@ char	*get_next_line(int fd)
 	if (fd <= 0)
 		return (NULL);
 	buffer = read_line(fd, buffer);
+	if (buffer == NULL)
+		return (NULL);
 	line = NULL;
 	line = get_first_line(buffer, line);
 	buffer = without_first_line(buffer);
