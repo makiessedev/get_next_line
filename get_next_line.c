@@ -1,7 +1,7 @@
 #include "get_next_line.h"
 
 static char	*read_line(int fd, char *buffer);
-static char	*get_first_line(char *buffer);
+static char	*get_first_line(char *buffer, char *line);
 static char	*without_first_line(char *buffer);
 
 char	*get_next_line(int fd)
@@ -12,8 +12,8 @@ char	*get_next_line(int fd)
 	if (fd <= 0)
 		return (NULL);
 	buffer = read_line(fd, buffer);
-	line = get_first_line(buffer);
-	(void)line;
+	line = NULL;
+	line = get_first_line(buffer, line);
 	buffer = without_first_line(buffer);
 	return (line);
 }
@@ -24,6 +24,8 @@ static char	*read_line(int fd, char *buffer)
 	char	*buffer_temp;
 
 	buffer_temp = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (buffer_temp == NULL)
+		return (NULL);
 	read_len = 1;
 	while (ft_strchr(buffer, '\n') == NULL && read_len != 0)
 	{
@@ -40,21 +42,23 @@ static char	*read_line(int fd, char *buffer)
 	return (buffer);
 }
 
-static char	*get_first_line(char *buffer)
+static char	*get_first_line(char *buffer, char *line)
 {
-	char	*line;
 	int	count;
 
 	count = 0;
-	while (buffer[count] && buffer[count] != '\n')
+	while (buffer[count] != '\0' && buffer[count] != '\n')
 		++count;
-	line = (char *)malloc(sizeof(char) * count);
+	line = (char *)malloc(sizeof(char) * (count + 1));
+	if (line == NULL)
+		return (NULL);
 	count = 0;
 	while (buffer[count] && buffer[count] != '\n')
 	{
 		line[count] = buffer[count];
 		++count;
 	}
+	line[count] = '\0';
 	return (line);
 }
 
@@ -68,11 +72,21 @@ static char	*without_first_line(char *buffer)
 	count = 0;
 	while (buffer[rest_init] && buffer[rest_init] != '\n')
 		rest_init++;
+	if (buffer[rest_init] == '\0')
+	{
+		free(buffer);
+		return (NULL);
+	}
 	rest = (char *)malloc(sizeof(char) * ft_strlen(buffer + rest_init));
+	if (rest == NULL)
+		return (NULL);
+	rest_init++;
 	while (buffer[rest_init + count])
 	{
 		rest[count] = buffer[rest_init + count];
 		count++;
 	}
+	rest[count] = '\0';
+	free(buffer);
 	return (rest);
 }
