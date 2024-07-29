@@ -2,15 +2,19 @@
 
 static char	*read_line(int fd, char *buffer);
 static char	*get_first_line(char *buffer);
+static char	*without_first_line(char *buffer);
 
 char	*get_next_line(int fd)
 {
 	static char	*buffer;
 	char	*line;
+
 	if (fd <= 0)
 		return (NULL);
-	buffer = read_first_line(fd, buffer);
-	line = get_line(buffer);
+	buffer = read_line(fd, buffer);
+	line = get_first_line(buffer);
+	(void)line;
+	buffer = without_first_line(buffer);
 	return (line);
 }
 
@@ -52,4 +56,23 @@ static char	*get_first_line(char *buffer)
 		++count;
 	}
 	return (line);
+}
+
+static char	*without_first_line(char *buffer)
+{
+	int	rest_init;
+	int	count;
+	char	*rest;
+
+	rest_init = 0;
+	count = 0;
+	while (buffer[rest_init] && buffer[rest_init] != '\n')
+		rest_init++;
+	rest = (char *)malloc(sizeof(char) * ft_strlen(buffer + rest_init));
+	while (buffer[rest_init + count])
+	{
+		rest[count] = buffer[rest_init + count];
+		count++;
+	}
+	return (rest);
 }
