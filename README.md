@@ -1,6 +1,6 @@
 <h1 align="center">
 	📖 get_next_line
-</h1>
+</h1>## 📋 Made with love, coffee and bugs
 
 <p align="center">
 	<b><i>Reading a line on a fd is way too tedious</i></b><br>
@@ -9,6 +9,8 @@
 ---
 
 ## 💡 About the project
+
+## 📋 Made with love, coffee and bugs
 
 > _The aim of this project is to make you code a function that returns a line, read from a file descriptor._
 
