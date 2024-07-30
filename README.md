@@ -40,4 +40,4 @@ and, when compiling your code, add the source files and the required flag:
 get_next_line.c get_next_line_utils.c -D BUFFER_SIZE=<size>
 ```
 
-## 📋 In Development...
+## 📋 Made with love, coffee and bugs
