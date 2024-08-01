@@ -8,7 +8,7 @@
 
 ---
 
-## ❤️ Made with love, coffee and bugs
+## 💡 Made with ❤️, coffee and bugs
 
 > _The aim of this project is to make you code a function that returns a line, read from a file descriptor._
 
