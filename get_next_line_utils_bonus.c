@@ -6,7 +6,7 @@
 /*   By: mmorais <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 12:07:16 by mmorais           #+#    #+#             */
-/*   Updated: 2024/07/29 19:03:26 by mmorais          ###   ########.fr       */
+/*   Updated: 2024/08/02 08:40:32 by mmorais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line_bonus.h"
@@ -61,5 +61,6 @@ char	*ft_strjoin(char *next_lines, char *temp)
 		count++;
 	}
 	joined[next_lines_len + count] = '\0';
+	free(next_lines);
 	return (joined);
 }
